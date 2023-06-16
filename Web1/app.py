@@ -79,7 +79,6 @@ def get_subjects():
 
     return subjects
 
-
 def get_lecture(user_id):
     lectures = []
     with app.database.connect() as connection:
@@ -102,13 +101,11 @@ def get_lecture(user_id):
 
     return lectures
 
-
-
-whitelist = ["/static", "/login", "/register", "/forgot-password"]
+whitelist = ["/static", "/login","/register",'/forgot-password']
 
 @app.before_request
 def require_authorization():
-    if any(filter(lambda x:request.path.startswith(x), whitelist)) or ('username' in session):
+    if any(filter(lambda x:request.path.startswith(x), whitelist)) or ('username' in session.keys()):
         print("PASS")
         pass
     else:
@@ -144,7 +141,6 @@ def login_do():
     elif int(uid) == exist_user['id'] and pw == exist_user['password']:
         session['username'] = uid
         return redirect('/index')
-    
         
     else:
         return redirect('/login')
@@ -178,14 +174,11 @@ def forgotpwd():
 @app.route('/index')
 def index():
     uid = session['username']
-    if(uid == 'admin'):
-        return redirect('/index_admin')
     lectures = get_lecture(uid)
     users = get_users()
     week = ['월', '화', '수', '목', '금']
     lec = [(d['과목명'], d['강의시간']) for d in lectures]
     return render_template('index.html', lectures=lectures, users=users, week = week, lec = lec, uid = uid)
-
 
 @app.route('/index_admin')
 def index_admin():
@@ -210,14 +203,19 @@ def get_users():
         
         return users
 
-
+def get_student():
+    with app.database.connect() as connection:
+        student = connection.execute(text("""
+        SELECT *
+        FROM student
+        """)).fetchall()
+        
+        return student
 
 @app.route('/tables', methods=['GET', 'POST'])
 def tables():
     uid = session['username']
-    if(uid == 'admin'):
-        return redirect('/index_admin')
-   
+
     if request.method == 'POST':
         login_ID = request.form.get('user_id')
         subject_id = request.form.get('subject_id')
@@ -246,7 +244,7 @@ def tables():
                 VALUES (:login_ID, :과목, :학점, :시간, :담당교수)
             """), {'login_ID': user['id'], '과목': subject['과목명'], '학점': subject['학점'], '시간': subject['강의시간'], '담당교수': subject['담당교수']})
         
-        return redirect('/index', uid = uid)  # 수강신청이 성공적으로 완료되었을 경우 반환할 메시지
+        return redirect('/index')  # 수강신청이 성공적으로 완료되었을 경우 반환할 메시지
         
     else:
         subjects = get_subject()
@@ -255,8 +253,9 @@ def tables():
 
 @app.route('/notice')
 def notice():
+    student = get_student()
     uid = session['username']
-    return render_template('notice.html', uid = uid)
+    return render_template('notice.html', student=student, uid = uid)
 
 @app.route('/noticepage')
 def noticepage():
@@ -293,6 +292,7 @@ def workwrite():
 def workmodify():
     uid = session['username']
     return render_template('workmodify.html', uid = uid)
+
 
 @app.route('/file')
 def file():
@@ -336,9 +336,7 @@ def gradeview():
 @app.route('/lecture')
 def lecture():
     uid = session['username']
-    if(uid == 'admin'):
-        return redirect('/index_admin')
-    subjects = get_subject()
+    subjects = get_subjects()
     return render_template('lecture.html', subjects=subjects, uid = uid)
 
 if __name__ == '__main__':
