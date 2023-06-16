@@ -77,6 +77,15 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Charts
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+            -->
+
+            <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/lecture">
                     <i class="fas fa-fw fa-table"></i>
@@ -107,8 +116,8 @@
                     <span>자료</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
+             <!-- Nav Item - Tables -->
+             <li class="nav-item">
                 <a class="nav-link" href="/gradeview">
                     <i class="fas fa-fw fa-table"></i>
                     <span>성적조회</span></a>
@@ -138,15 +147,6 @@
             <!-- Main Content -->
             <div id="content">
 
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-
-
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
@@ -168,12 +168,15 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    
+                    <h1 class="h3 mb-2 text-gray-800">수강신청</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">수강신청</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -187,15 +190,15 @@
                                         
                                     </tfoot>
                                     <body>
+                                        <h1>수강신청</h1>
                                     
                                         <form method="POST" action="/tables">
                                             <label for="user_id">사용자 ID:</label>
-                                            <select id="user_id" name="user_id">
-                                                {% for user in users %}
-                                                    <option value="{{ user.id }}">{{ user.username }}</option>
-                                                {% endfor %}
-                                            </select>
-                                    
+                                            {% if 'username' in session %}
+                                                <input type="hidden" id="user_id" name="user_id" value="{{ session['username'] }}">
+                                                <span>{{ session['username'] }}</span>
+                                                {% endif %}
+                                                <label>---------</label>
                                             <label for="subject_id">과목:</label>
                                             <select id="subject_id" name="subject_id">
                                                 {% for subject in subjects %}

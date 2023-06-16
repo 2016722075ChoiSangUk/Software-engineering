@@ -101,44 +101,44 @@
     
                 <!-- Nav Item - Charts
                 <li class="nav-item">
-                    <a class="nav-link" href="charts">
+                    <a class="nav-link" href="charts.html">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Charts</span></a>
                 </li>
                 -->
     
                 <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="/lecture">
+                <li class="nav-item">
+                    <a class="nav-link" href="/lecture">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>강의계획서 조회</span></a>
+                </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/tables">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>수강신청</span></a>
+                </li>
+               <!-- Nav Item - Tables -->
+               <li class="nav-item">
+                <a class="nav-link" href="/notice">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>강의계획서 조회</span></a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="/tables">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>수강신청</span></a>
-            </li>
-           <!-- Nav Item - Tables -->
-           <li class="nav-item">
-            <a class="nav-link" href="/notice">
-                <i class="fas fa-fw fa-table"></i>
-                <span>공지사항</span></a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="/work">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>과제</span></a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="/file">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>자료</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
+                    <span>공지사항</span></a>
+                </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/work">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>과제</span></a>
+                </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/file">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>자료</span></a>
+                </li>
+                
+                 <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/gradeview">
                     <i class="fas fa-fw fa-table"></i>
@@ -168,15 +168,6 @@
 
             <!-- Main Content -->
             <div id="content">
-
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -260,7 +251,52 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>글번호</th>
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>조회수</th>
+                                            <th>작성일</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                       
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="/filepage">title</a></td>
+                                            <td>학생1</td>
+                                            <td>0</td>
+                                            <td>23-06-05</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="/filepage">title</a></td>
+                                            <td>학생1</td>
+                                            <td>0</td>
+                                            <td>23-06-05</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="/filepage">title</a></td>
+                                            <td>학생1</td>
+                                            <td>0</td>
+                                            <td>23-06-05</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="/filepage">title</a></td>
+                                            <td>학생1</td>
+                                            <td>0</td>
+                                            <td>23-06-05</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
@@ -305,7 +341,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login">Logout</a>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
