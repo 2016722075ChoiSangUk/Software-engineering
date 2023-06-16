@@ -9,19 +9,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Notice</title>
+    <title>SB Admin 2 - Dashboard</title>
 
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts for this template-->
     <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template-->
     <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="/static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -82,7 +79,7 @@
 
             <!-- Nav Item - Charts
             <li class="nav-item">
-                <a class="nav-link" href="charts">
+                <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
@@ -180,55 +177,65 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">과제 게시판</h1>
-
+                    <h1 class="h3 mb-2 text-gray-800">성적 입력</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">과목 이름</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">성적 입력</h6>
                         </div>
                         <div class="card-body">
-                            <form action="/post" method="post" enctype="multipart/form-data">
-                                <div class="form-group row">
-                                    <label for="inputTitle" class="col-sm-2 col-form-label"><strong>제목</strong></label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="title" class="form-control" id="inputTitle" value="제목"/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputAuthor" class="col-sm-2 col-form-label"><strong>작성자</strong></label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="author" class="form-control" id="inputAuthor" value="작성자" disabled/>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputContent" class="col-sm-2 col-form-label"><strong>내용</strong></label>
-                                    <div class="col-sm-10">
-                                        <textarea type="text" name="content" class="form-control" id="inputContent" value="내용"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputFile" class="col-sm-2 col-form-label"><strong>첨부 파일</strong></label>
-                                    <div class="col-sm-10">
-                                        <div class="custom-file" id="inputFile">
-                                            <input name="file" type="file" class="custom-file-input" id="customFile" />
-                                            <label class="custom-file-label" for="customFile">파일을 선택해 주세요.</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-auto mr-auto"></div>
-                                    <div class="col-auto">
-                                        <a href="/work" class="btn btn-secondary">목록으로</a>
-                                        <a href="/work" class="btn btn-primary">글쓰기</a>
-                                        <!-- <button class="btn btn-primary">글 쓰기</button> -->
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
                                         
-                                    </div>
-                                </div>
-                            </form>
+                                    </tfoot>
+                                    <body>
+                                    
+                                        <form method="POST" action="/tables">
+                                            <label for="user_id">사용자 ID:</label>
+                                            <select id="user_id" name="user_id">
+                                                {% for user in users %}
+                                                    <option value="{{ user.id }}">{{ user.username }}</option>
+                                                {% endfor %}
+                                            </select>
+                                    
+                                            <label for="subject_id">과목:</label>
+                                            <select id="subject_id" name="subject_id">
+                                                {% for subject in subjects %}
+                                                    <option value="{{ subject.과목명 }}">{{ subject.과목명 }}</option>
+                                                {% endfor %}
+                                            </select>
+                                                
+                                            </select>
+
+                                            <label for="subject_id">성적:</label>
+                                            <select id="grade" name="grade">
+                                                <option value="A+">A+</option>
+                                                <option value="A0">A0</option>
+                                                <option value="B+">B+</option>
+                                                <option value="B0">B0</option>
+                                                <option value="C+">C+</option>
+                                                <option value="C0">C0</option>
+                                                <option value="D+">D+</option>
+                                                <option value="D0">D0</option>
+                                                <option value="F0">F0</option>
+                                            </select>
+                                    
+                                            <input type="submit" value="성적 입력">
+                                        </form>
+                                    </body>
+                                        
+                                </table>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -270,7 +277,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/login">Logout</a>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
