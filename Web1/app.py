@@ -80,8 +80,31 @@ def get_subjects():
     return subjects
 
 
+def get_lecture(user_id):
+    lectures = []
+    with app.database.connect() as connection:
+        lecture = connection.execute(text("""
+            SELECT 
+                *
+            FROM student
+            WHERE login_ID = :user_id
+        """), {
+            'user_id': user_id 
+        }
 
-whitelist = ["/static", "/login"]
+        )
+        for row in lecture:
+            lecture = {
+                '과목명': row[1],
+                '강의시간': row[3]
+            }
+            lectures.append(lecture)
+
+    return lectures
+
+
+
+whitelist = ["/static", "/login", "/register", "/forgot-password"]
 
 @app.before_request
 def require_authorization():
@@ -121,6 +144,7 @@ def login_do():
     elif int(uid) == exist_user['id'] and pw == exist_user['password']:
         session['username'] = uid
         return redirect('/index')
+    
         
     else:
         return redirect('/login')
@@ -153,11 +177,20 @@ def forgotpwd():
 
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    uid = session['username']
+    if(uid == 'admin'):
+        return redirect('/index_admin')
+    lectures = get_lecture(uid)
+    users = get_users()
+    week = ['월', '화', '수', '목', '금']
+    lec = [(d['과목명'], d['강의시간']) for d in lectures]
+    return render_template('index.html', lectures=lectures, users=users, week = week, lec = lec, uid = uid)
+
 
 @app.route('/index_admin')
 def index_admin():
-    return render_template('index_admin.html')
+    uid = session['username']
+    return render_template('index_admin.html', uid = uid)
 
 def get_subject():
     with app.database.connect() as connection:
@@ -181,6 +214,9 @@ def get_users():
 
 @app.route('/tables', methods=['GET', 'POST'])
 def tables():
+    uid = session['username']
+    if(uid == 'admin'):
+        return redirect('/index_admin')
    
     if request.method == 'POST':
         login_ID = request.form.get('user_id')
@@ -210,49 +246,100 @@ def tables():
                 VALUES (:login_ID, :과목, :학점, :시간, :담당교수)
             """), {'login_ID': user['id'], '과목': subject['과목명'], '학점': subject['학점'], '시간': subject['강의시간'], '담당교수': subject['담당교수']})
         
-        return redirect('/index')  # 수강신청이 성공적으로 완료되었을 경우 반환할 메시지
+        return redirect('/index', uid = uid)  # 수강신청이 성공적으로 완료되었을 경우 반환할 메시지
         
     else:
         subjects = get_subject()
         users = get_users()
-        return render_template('tables.html', subjects=subjects, users=users)
+        return render_template('tables.html', subjects=subjects, users=users, uid = uid)
 
 @app.route('/notice')
 def notice():
-    return render_template('notice.html')
+    uid = session['username']
+    return render_template('notice.html', uid = uid)
 
-@app.route('/work')
-def work():
-    return render_template('work.html')
-
-@app.route('/file')
-def file():
-    return render_template('file.html')
-
-@app.route('/filewrite')
-def filewrite():
-    return render_template('filewrite.html')
-
-@app.route('/workpage')
-def workpage():
-    return render_template('workpage.html')
-
-@app.route('/filepage')
-def filepage():
-    return render_template('filepage.html')
+@app.route('/noticepage')
+def noticepage():
+    uid = session['username']
+    return render_template('noticepage.html', uid = uid)
 
 @app.route('/noticewrite')
 def noticewrite():
-    return render_template('noticewrite.html')
+    uid = session['username']
+    return render_template('noticewrite.html', uid = uid)
+
+@app.route('/noticemodify')
+def noticemodify():
+    uid = session['username']
+    return render_template('noticemodify.html', uid = uid)
+
+
+@app.route('/work')
+def work():
+    uid = session['username']
+    return render_template('work.html', uid = uid)
+
+@app.route('/workpage')
+def workpage():
+    uid = session['username']
+    return render_template('workpage.html', uid = uid)
 
 @app.route('/workwrite')
 def workwrite():
-    return render_template('workwrite.html')
+    uid = session['username']
+    return render_template('workwrite.html', uid = uid)
+
+@app.route('/workmodify')
+def workmodify():
+    uid = session['username']
+    return render_template('workmodify.html', uid = uid)
+
+@app.route('/file')
+def file():
+    uid = session['username']
+    return render_template('file.html', uid = uid)
+
+@app.route('/filepage')
+def filepage():
+    uid = session['username']
+    return render_template('filepage.html', uid = uid)
+
+@app.route('/filewrite')
+def filewrite():
+    uid = session['username']
+    return render_template('filewrite.html', uid = uid)
+
+@app.route('/filemodify')
+def filemodify():
+    uid = session['username']
+    return render_template('filemodify.html', uid = uid)
+
+
+@app.route('/grade')
+def grade():
+    uid = session['username']
+    if(uid == 'admin'):
+        return redirect('/index_admin')
+    subjects = get_subject()
+    users = get_users()
+    return render_template('grade.html', subjects=subjects, users=users, uid = uid)
+
+@app.route('/gradeview')
+def gradeview():
+    uid = session['username']
+    if(uid == 'admin'):
+        return redirect('/index_admin')
+    lectures = get_lecture(uid)
+    return render_template('gradeview.html', subjects=lectures, uid = uid)
+
 
 @app.route('/lecture')
 def lecture():
-    subjects = get_subjects()
-    return render_template('lecture.html', subjects=subjects)
+    uid = session['username']
+    if(uid == 'admin'):
+        return redirect('/index_admin')
+    subjects = get_subject()
+    return render_template('lecture.html', subjects=subjects, uid = uid)
 
 if __name__ == '__main__':
     app.run(debug=True)

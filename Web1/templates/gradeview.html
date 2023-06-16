@@ -9,105 +9,75 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Notice</title>
+    <title>SB Admin 2 - Dashboard</title>
 
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts for this template-->
     <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template-->
     <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this page -->
-    <link href="/static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
 
-    <head>
+<body id="page-top">
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-    
-        <title>SB Admin 2 - Dashboard</title>
-    
-        <!-- Custom fonts for this template-->
-        <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
-    
-        <!-- Custom styles for this template-->
-        <link href="/static/css/sb-admin-2.min.css" rel="stylesheet">
-    
-    </head>
-    
-    <body id="page-top">
-    
-        <!-- Page Wrapper -->
-        <div id="wrapper">
-    
-            <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    
-                <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
-                    <img class="rounded-circle" src="/static/img/logo.jpg" alt="...">
-                    <div class="sidebar-brand-text mx-3">KLAS2</div>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
+                <img class="rounded-circle" src="/static/img/logo.jpg" alt="...">
+                <div class="sidebar-brand-text mx-3">KLAS2</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>대시보드</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                기능
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>로그인 관리</span>
                 </a>
-    
-                <!-- Divider -->
-                <hr class="sidebar-divider my-0">
-    
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="/index">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>대시보드</span></a>
-                </li>
-    
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-    
-                
-    
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-    
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    기능
-                </div>
-    
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                        aria-expanded="true" aria-controls="collapsePages">
-                        <i class="fas fa-fw fa-folder"></i>
-                        <span>로그인 관리</span>
-                    </a>
-                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Login Screens:</h6>
-                            <a class="collapse-item" href="/logout">Logout</a>
-                            <a class="collapse-item" href="/register">Register</a>
-                            <a class="collapse-item" href="/forgot-password">Forgot Password</a>
-                            <div class="collapse-divider"></div>
-                        </div>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="/logout">Logout</a>
+                        <a class="collapse-item" href="/register">Register</a>
+                        <a class="collapse-item" href="/forgot-password">Forgot Password</a>
+                        <div class="collapse-divider"></div>
                     </div>
-                </li>
-    
-                <!-- Nav Item - Charts
-                <li class="nav-item">
-                    <a class="nav-link" href="charts">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Charts</span></a>
-                </li>
-                -->
-    
-                <!-- Nav Item - Tables -->
+                </div>
+            </li>
+
+            <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/lecture">
                     <i class="fas fa-fw fa-table"></i>
@@ -198,67 +168,31 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">과제 게시판</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-2 font-weight-bold text-primary float-left">과목 이름</h6>
-                            <a class="btn btn-primary float-right" href="/workwrite"><i class="fas fa-edit"></i> 글 작성</a>    
+                            <h6 class="m-0 font-weight-bold text-primary">성적 조회</h6>
                         </div>
                         
                         <div class="card-body">
                             <table class="table table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th>글번호</th>
-                                        <th>제목</th>
-                                        <th>작성자</th>
-                                        <th>조회수</th>
-                                        <th>작성일</th>
+                                        <th>과목명</th>
+                                        <th>학점</th>
+                                        <th>성적</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${boards}" var="board">
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="workpage">title</a></td>
-                                            <td>학생1</td>
-                                            <td>0</td>
-                                            <td>23-06-05</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="workpage">title</a></td>
-                                            <td>학생1</td>
-                                            <td>0</td>
-                                            <td>23-06-05</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="workpage">title</a></td>
-                                            <td>학생1</td>
-                                            <td>0</td>
-                                            <td>23-06-05</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="workpage">title</a></td>
-                                            <td>학생1</td>
-                                            <td>0</td>
-                                            <td>23-06-05</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="workpage">title</a></td>
-                                            <td>학생1</td>
-                                            <td>0</td>
-                                            <td>23-06-05</td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
+                                    {% for subject in subjects %}
+                                     <tr>
+                                         <td>{{ subject['과목명'] }}</td>
+                                         <td>{{ subject['학점'] }}</td>
+                                         <td>A+</td>
+                                     </tr>
+                                      {% endfor %}
+                                 </tbody>
                             </table>
-                            
                         </div>
                     </div>
 
@@ -303,7 +237,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login">Logout</a>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
